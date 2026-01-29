@@ -5,10 +5,7 @@ import com.jpdev.apiproduto.business.dto.ProdutoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,4 +18,16 @@ public class ProdutoController {
     public ResponseEntity<ProdutoDTO> salvaProduto(@RequestBody ProdutoDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.salvaProduto(dto));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoDTO> buscaProdutoPorId(@PathVariable("id") Long id){
+        return ResponseEntity.ok(service.buscaProdutoPorId(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletaProdutoPorId(@PathVariable("id") Long id){
+        service.deletaProdutoPorId(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }
