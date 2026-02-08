@@ -30,4 +30,8 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ProdutoDTO> autualizaProduto(@PathVariable("id") Long id, @RequestBody ProdutoDTO dto){
+        return ResponseEntity.ok(service.atualizaProduto(id, dto));
+    }
 }

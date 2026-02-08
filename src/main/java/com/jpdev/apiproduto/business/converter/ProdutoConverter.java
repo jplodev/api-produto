@@ -52,4 +52,14 @@ public class ProdutoConverter {
                 .nome(categoria.getNome())
                 .build();
     }
+
+    public Produto updateProduto(ProdutoDTO dto, Produto entity){
+        return Produto.builder()
+                .id(entity.getId())
+                .nome(dto.getNome() != null ? dto.getNome() : entity.getNome())
+                .descricao(dto.getDescricao() != null ? dto.getDescricao() : entity.getDescricao())
+                .preco(dto.getPreco() != null ? dto.getPreco() : entity.getPreco())
+                .categorias(entity.getCategorias())
+                .build();
+    }
 }
