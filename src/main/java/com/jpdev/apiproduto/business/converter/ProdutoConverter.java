@@ -53,7 +53,7 @@ public class ProdutoConverter {
                 .build();
     }
 
-    public Produto updateProduto(ProdutoDTO dto, Produto entity){
+    public Produto updateProduto( ProdutoDTO dto, Produto entity){
         return Produto.builder()
                 .id(entity.getId())
                 .nome(dto.getNome() != null ? dto.getNome() : entity.getNome())

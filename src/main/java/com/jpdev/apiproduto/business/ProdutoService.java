@@ -39,10 +39,13 @@ public class ProdutoService {
         }
     }
 
-
     public ProdutoDTO atualizaProduto(Long id, ProdutoDTO dto) {
-        Produto entity = repository.getReferenceById(id);
-        entity = converter.updateProduto(dto, entity);
-        return converter.paraProdutoDTO(repository.save(entity));
+        try{
+            Produto entity = repository.getReferenceById(id);
+            entity = converter.updateProduto(dto, entity);
+            return converter.paraProdutoDTO(repository.save(entity));
+        }catch (ResourceNotFoundException e){
+            throw new ResourceNotFoundException("Id não encontrado", e.getCause());
+        }
     }
 }
